@@ -13,3 +13,9 @@ branches:
     increment: Minor
     prevent-increment-of-merged-branch-version: false
     track-merge-target: true
+  chillisource:
+    mode: ContinuousDeployment
+    tag:
+    increment: Patch
+    prevent-increment-of-merged-branch-version: false
+    track-merge-target: false
