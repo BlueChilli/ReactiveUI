@@ -113,7 +113,7 @@ Setup(context =>
         throw new NotImplementedException("ReactiveUI will only build on Windows (w/Xamarin installed) because it's not possible to target UWP, WPF and Windows Forms from UNIX.");
     }
 
-    Information("Building version {0} of ReactiveUI. (isTagged: {1})", informationalVersion, isTagged);
+    Information("Building version {0} of ReactiveUI. (isTagged: {1}) - NugetVersion: {2}", informationalVersion, isTagged, nugetVersion);
 });
 
 Teardown(context =>
@@ -272,7 +272,7 @@ Task("PackageReactiveUI")
 
   //  Package("./src/ReactiveUI-AndroidSupport.nuspec", "./src/ReactiveUI.AndroidSupport");
  //   Package("./src/ReactiveUI-Blend.nuspec", "./src/ReactiveUI.Blend");
-    Package("./src/ReactiveUI-Testing.nuspec", "./src/ReactiveUI.Testing");
+  //  Package("./src/ReactiveUI-Testing.nuspec", "./src/ReactiveUI.Testing");
 //    Package("./src/ReactiveUI-Winforms.nuspec", "./src/ReactiveUI.Winforms");
     Package("./src/ReactiveUI-XamForms.nuspec", "./src/ReactiveUI.XamForms");
 });

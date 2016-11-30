@@ -1,5 +1,5 @@
 assembly-versioning-scheme: None
-next-version: 7.0.0
+next-version: 7.0.1
 branches:
   master:
     mode: ContinuousDelivery
@@ -14,8 +14,8 @@ branches:
     prevent-increment-of-merged-branch-version: false
     track-merge-target: true
   chillisource:
-    mode: ContinuousDeployment
-    tag:
+    mode: ContinuousDelivery
+    tag: 
     increment: Patch
-    prevent-increment-of-merged-branch-version: false
+    prevent-increment-of-merged-branch-version: true
     track-merge-target: false
