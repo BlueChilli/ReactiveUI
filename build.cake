@@ -185,7 +185,7 @@ Task("GenerateEvents")
         }
     };
 
-   // generate("android");
+    generate("android");
     generate("ios");
     generate("mac");
     generate("xamforms");
@@ -219,7 +219,7 @@ Task("BuildEvents")
         SourceLink(solution);
     };
 
-   // build("ReactiveUI.Events_Android.sln");
+    build("ReactiveUI.Events_Android.sln");
     build("ReactiveUI.Events_iOS.sln");
     build("ReactiveUI.Events_MAC.sln");
     build("ReactiveUI.Events_XamForms.sln");
@@ -234,8 +234,8 @@ Task("PackageEvents")
     .IsDependentOn("BuildEvents")
     .Does (() =>
 {
-   // Package("./src/ReactiveUI-Events.nuspec", "./src/ReactiveUI.Events");
-   // Package("./src/ReactiveUI-Events-XamForms.nuspec", "./src/ReactiveUI.Events");
+    Package("./src/ReactiveUI-Events.nuspec", "./src/ReactiveUI.Events");
+    Package("./src/ReactiveUI-Events-XamForms.nuspec", "./src/ReactiveUI.Events");
 });
 
 Task("BuildReactiveUI")
@@ -270,9 +270,9 @@ Task("PackageReactiveUI")
     Package("./src/ReactiveUI.nuspec", "./");
     Package("./src/ReactiveUI-Core.nuspec", "./src/ReactiveUI");
 
-  //  Package("./src/ReactiveUI-AndroidSupport.nuspec", "./src/ReactiveUI.AndroidSupport");
+    Package("./src/ReactiveUI-AndroidSupport.nuspec", "./src/ReactiveUI.AndroidSupport");
  //   Package("./src/ReactiveUI-Blend.nuspec", "./src/ReactiveUI.Blend");
-  //  Package("./src/ReactiveUI-Testing.nuspec", "./src/ReactiveUI.Testing");
+      Package("./src/ReactiveUI-Testing.nuspec", "./src/ReactiveUI.Testing");
 //    Package("./src/ReactiveUI-Winforms.nuspec", "./src/ReactiveUI.Winforms");
     Package("./src/ReactiveUI-XamForms.nuspec", "./src/ReactiveUI.XamForms");
 });
