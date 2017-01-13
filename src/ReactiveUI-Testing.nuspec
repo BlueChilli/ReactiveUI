@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>reactiveui-testing</id>
@@ -36,10 +36,13 @@
   <files>
     <!-- Android -->
     <file src="bin/Release/MonoAndroid403/ReactiveUI.Testing.dll" target="lib/MonoAndroid403/ReactiveUI.Testing.dll" />
+    <file src="bin/Release/MonoAndroid403/Microsoft.Reactive.Testing.dll" target="lib/MonoAndroid403/Microsoft.Reactive.Testing.dll" />
     <!-- iOS Unified API -->
     <file src="bin/Release/Xamarin.iOS10/ReactiveUI.Testing.dll" target="lib/Xamarin.iOS10/ReactiveUI.Testing.dll" />
+    <file src="bin/Release/Xamarin.iOS10/Microsoft.Reactive.Testing.dll" target="lib/Xamarin.iOS10/Microsoft.Reactive.Testing.dll" />
     <!-- Xamarin Mac Unified API -->
      <file src="bin/Release/Xamarin.Mac20/ReactiveUI.Testing.dll" target="lib/Xamarin.Mac20/ReactiveUI.Testing.dll" /> 
+     <file src="bin/Release/Xamarin.Mac20/Microsoft.Reactive.Testing.dll" target="lib/Xamarin.Mac20/Microsoft.Reactive.Testing.dll" />
     <!-- Windows Store 8.1 -->
     <!-- <file src="bin/Release/Portable-Win81+WPA81/ReactiveUI.Testing.dll" target="lib/Portable-Win81+WPA81/ReactiveUI.Testing.dll" /> -->
     <!-- Windows Universal -->
