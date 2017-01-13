@@ -82,7 +82,7 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="RxApp.cs" />
+    <Compile Include="XamForms\RxApp.cs" />
     <Compile Include="XamForms\ActivationForViewFetcher.cs" />
     <Compile Include="XamForms\ViewModelViewHost.cs" />
     <Compile Include="XamForms\ReactiveContentView.cs" />
