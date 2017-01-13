@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ReactiveUI.XamForms
+namespace ReactiveUI
 {
-    public static class RxApp
+    public static class RxAppConfig
     {
         public static void InitReactiveUI()
         {
