@@ -27,9 +27,11 @@
       </group>
       <group targetFramework="monoandroid">
         <dependency id="reactiveui-core" version="[$version$]" />
-      </group>
+        <dependency id="Rx-Testing" version="2.2.5" />
+     </group>
       <group targetFramework="monotouch">
         <dependency id="reactiveui-core" version="[$version$]" />
+        <dependency id="Rx-Testing" version="2.2.5" />
       </group>
     </dependencies>
   </metadata>
