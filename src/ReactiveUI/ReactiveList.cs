@@ -859,8 +859,8 @@ namespace ReactiveUI
             {
                 return refcountSubscribers(_changed.SelectMany(x =>
                     x.Action != NotifyCollectionChangedAction.Reset ?
-                        Observable.Empty<Unit>() :
-                        Observable.Return(Unit.Default)), x => _resetSubCount += x);
+                        Observable<Unit>.Empty :
+                        Observables.Unit), x => _resetSubCount += x);
             }
         }
 
@@ -875,8 +875,8 @@ namespace ReactiveUI
                 return;
             }
 
-            var changing = Observable.Never<IReactivePropertyChangedEventArgs<T>>();
-            var changed = Observable.Never<IReactivePropertyChangedEventArgs<T>>();
+            var changing = Observable<IReactivePropertyChangedEventArgs<T>>.Never;
+            var changed = Observable<IReactivePropertyChangedEventArgs<T>>.Never;
             var ro = toTrack as IReactiveObject;
             if (ro != null)
             {
