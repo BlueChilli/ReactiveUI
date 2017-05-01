@@ -1,4 +1,4 @@
-assembly-versioning-scheme: 7.2.1
+assembly-versioning-scheme: None
 branches:
   master:
     mode: ContinuousDelivery
@@ -15,6 +15,12 @@ branches:
 
     mode: ContinuousDelivery
     tag: 
+    increment: Patch
+    prevent-increment-of-merged-branch-version: true
+    track-merge-target: false
+  chillisource:
+    mode: ContinuousDelivery
+    tag:
     increment: Patch
     prevent-increment-of-merged-branch-version: true
     track-merge-target: false

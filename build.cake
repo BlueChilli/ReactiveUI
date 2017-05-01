@@ -201,38 +201,45 @@ Task("GenerateEvents")
   // generate("uwp");
 });
 
+Action<string, string> build = (directory, filename) =>
+{
+    var solution = System.IO.Path.Combine(directory, filename);
+
+    // UWP (project.json) needs to be restored before it will build.
+    RestorePackages (solution);
+
+    Information("Building {0}", solution);
+
+    MSBuild(solution, settings => {
+
+        settings
+        .SetConfiguration("Release")
+        .WithProperty("NoWarn", "1591") // ignore missing XML doc warnings
+        .WithProperty("TreatWarningsAsErrors", treatWarningsAsErrors.ToString())
+        .SetVerbosity(Verbosity.Minimal)
+        .SetNodeReuse(false);
+
+        settings.ToolVersion = MSBuildToolVersion.VS2015;
+        
+    });
+
+    SourceLink(solution);
+};
+
 Task("BuildEvents")
     .IsDependentOn("GenerateEvents")
     .Does (() =>
 {
-    Action<string> build = (filename) =>
-    {
-        var solution = System.IO.Path.Combine("./src/ReactiveUI.Events/", filename);
+    var directory = "./src/ReactiveUI.Events/";
+    build(directory, "ReactiveUI.Events_Android.sln");
+    build(directory, "ReactiveUI.Events_iOS.sln");
+    build(directory, "ReactiveUI.Events_MAC.sln");
+    build(directory, "ReactiveUI.Events_XamForms.sln");
 
-        // UWP (project.json) needs to be restored before it will build.
-        RestorePackages (solution);
+    build(directory, "ReactiveUI.Events_NET45.sln");
 
-        Information("Building {0}", solution);
-
-        MSBuild(solution, new MSBuildSettings()
-            .SetConfiguration("Release")
-            .WithProperty("NoWarn", "1591") // ignore missing XML doc warnings
-            .WithProperty("TreatWarningsAsErrors", treatWarningsAsErrors.ToString())
-            .SetVerbosity(Verbosity.Minimal)
-            .SetNodeReuse(false));
-
-        SourceLink(solution);
-    };
-
-    build("ReactiveUI.Events_Android.sln");
-    build("ReactiveUI.Events_iOS.sln");
-    build("ReactiveUI.Events_MAC.sln");
-    build("ReactiveUI.Events_XamForms.sln");
-
-    build("ReactiveUI.Events_NET45.sln");
-
-  //  build("ReactiveUI.Events_WPA81.sln");
-  //  build("ReactiveUI.Events_UWP.sln");
+  //  build(directory, "ReactiveUI.Events_WPA81.sln");
+  //  build(directory, "ReactiveUI.Events_UWP.sln");
 });
 
 Task("PackageEvents")
@@ -248,21 +255,7 @@ Task("BuildReactiveUI")
     .IsDependentOn("UpdateAssemblyInfo")
     .Does (() =>
 {
-    Action<string> build = (solution) =>
-    {
-        Information("Building {0}", solution);
-
-        MSBuild(solution, new MSBuildSettings()
-            .SetConfiguration("Release")
-            .WithProperty("NoWarn", "1591") // ignore missing XML doc warnings
-            .WithProperty("TreatWarningsAsErrors", treatWarningsAsErrors.ToString())
-            .SetVerbosity(Verbosity.Minimal)
-            .SetNodeReuse(false));
-
-        SourceLink(solution);
-    };
-
-    build("./src/ReactiveUIBuild.sln");
+    build("./", "src/ReactiveUIBuild.sln");
 });
 
 
@@ -272,14 +265,14 @@ Task("PackageReactiveUI")
     .Does (() =>
 {
     // use pwd as as cake needs a basePath, even if making a meta-package that contains no files.
-    Package("./src/ReactiveUI.nuspec", "./");
-    Package("./src/ReactiveUI-Core.nuspec", "./src/ReactiveUI");
+   // Package("./src/ReactiveUI.nuspec", "./");
+   // Package("./src/ReactiveUI-Core.nuspec", "./src/ReactiveUI");
 
     Package("./src/ReactiveUI-AndroidSupport.nuspec", "./src/ReactiveUI.AndroidSupport");
  //   Package("./src/ReactiveUI-Blend.nuspec", "./src/ReactiveUI.Blend");
       Package("./src/ReactiveUI-Testing.nuspec", "./src/ReactiveUI.Testing");
 //    Package("./src/ReactiveUI-Winforms.nuspec", "./src/ReactiveUI.Winforms");
-    Package("./src/ReactiveUI-XamForms.nuspec", "./src/ReactiveUI.XamForms");
+ //   Package("./src/ReactiveUI-XamForms.nuspec", "./src/ReactiveUI.XamForms");
 });
 
 Task("UpdateAppVeyorBuildNumber")
